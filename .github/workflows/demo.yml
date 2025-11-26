@@ -6,8 +6,8 @@ on:
       - dev
   pull_request:
     branches: [main, dev]
-  shedules:
-    - cron: '*/1 * * * *'  # Runs every Sunday at midnight  
+  #shedules:
+   # - cron: '*/1 * * * *'  # Runs every Sunday at midnight  
         
 jobs:   
   setup_job:
@@ -22,14 +22,14 @@ jobs:
       - name: display readme file
         run: cat README.md
 
-    build_job:
+  build_job:
       needs: setup_job
       runs-on: windows-latest 
       steps:
         - name: display hello
           run: echo hello
 
-    deploy_job:
+  deploy_job:
       runs-on: macos-latest
       steps:
         - name: display world
