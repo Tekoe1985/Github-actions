@@ -1,0 +1,35 @@
+name: Demo pipeline
+on: 
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches: [main, dev]
+  shedules:
+    - cron: '*/1 * * * *'  # Runs every Sunday at midnight  
+        
+jobs:   
+  setup_job:
+    runs-on: ubuntu-latest #macos-latest, windows-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+      - name: create file
+        run: touch github-actions.txt
+      - name: print hello world
+        run: echo "hello world"
+      - name: display readme file
+        run: cat README.md
+
+    build_job:
+      runs-on: windows-latest 
+      steps:
+        - name: display hello
+          run: echo hello
+
+    deploy_job:
+      runs-on: macos-latest
+      steps:
+        - name: display world
+          run: echo world        
